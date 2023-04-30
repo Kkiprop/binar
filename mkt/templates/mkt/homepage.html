@@ -1,0 +1,300 @@
+{% extends 'mkt/base.html' %}
+{% block start %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Binar-home</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.4.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<body>
+	<main id="main" class="main container">
+	  <section class="section">
+      <div class="row ">
+        <div class="col-lg-6 ">
+
+          <!-- Slides with indicators -->
+              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="card-deck">
+
+                      <div class="card">
+                        <img src="{% static '/assets/img/slides-2.jpg' %}" class="card-img-top" style="height: 300px; border-radius: 0;" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card with an image on top</h5>
+                          <p class="card-text">card's content.</p>
+                        </div>
+                      </div>
+
+                    </div>               
+                  </div>
+                  <div class="carousel-item">
+                    <div class="col-lg-3 d-block w-100">
+
+                      <div class="card ">
+                        <img src="{% static '/assets/img/slides-2.jpg' %}" class="card-img-top" style="height: 300px; border-radius: 0;" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card with an image on top</h5>
+                          <p class="card-text">card's content.</p>
+                        </div>
+                      </div>
+
+                    </div>  
+                  </div>
+                  <div class="carousel-item">
+                    <div class="col-lg-3 d-block w-100">
+
+                      <div class="card ">
+                        <img src="{% static '/assets/img/slides-2.jpg' %}" class="card-img-top" style="height: 300px; border-radius: 0;" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card with an image on top</h5>
+                          <p class="card-text">card's content.</p>
+                        </div>
+                      </div>
+
+                    </div>  
+                  </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+
+              </div><!-- End Slides with indicators -->
+
+        </div>
+      </div>
+  	</section>
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+
+              <div class="d-grid gap-2 mt-3">
+                <button class="btn  btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable" style="border-radius: 0;">Popular Brands</button>
+
+              </div>
+              <a class="d-grid gap-2 mt-3" href="{% url 'mkt:add_product' %}">
+                <button class="btn  btn-outline-primary" type="button" style="border-radius: 0;">Post Ad</button>
+              </a>
+              <div class="d-grid gap-2 mt-3">
+
+                <button class="btn  btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable" style="border-radius: 0;">View All Categories !
+                </button>
+
+                <div class="modal fade" id="modalDialogScrollable" tabindex="-1">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">all Categories!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      {% for category in categories %}
+                      <a class="d-grid gap-2 mt-3" href="{% url 'mkt:products' %}?category={{ category.name }}">
+                        <button class="btn  btn-outline-primary" type="button" style="border-radius: 0;">{{ category.name }}</button>
+                      </a>
+                      {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-bottom: 20px;">
+      <div class="row ">
+        <div class="col-lg-6">
+
+          <!-- Slides with indicators -->
+              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+                <div class="carousel-inner" style="height: 100px;">
+                  <div class="carousel-item active">
+                    <img src="{% static '/assets/img/slides-1.jpg' %}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static '/assets/img/slides-2.jpg' %}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static '/assets/img/slides-3.jpg' %}" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+
+              </div><!-- End Slides with indicators -->
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body pb-0">
+              <h5 class="card-title">Hottest Deals !! <span>| Today</span></h5>
+
+              <div class="news">
+                {% for product in promoted %}
+                {% if product.thumbnail %}
+
+                <div class="post-item clearfix">
+                  <img src="{{ product.thumbnail.url }}" alt="" style="height:60px; width:75px;">
+                  <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                  <p class="card-text text text-success"><strong>Ksh.{{ product.price }}</strong></p>
+                </div>
+
+                <hr>
+
+                {% endif %}
+                {% endfor %}
+
+              </div><!-- End sidebar recent posts-->
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="row align-items-right ">
+        <div class="col-lg-6">
+
+          <!-- Card with an image on top -->
+          <div class="card card-sm" style="border-radius: 0;">
+            <img src="{% static '/assets/img/slides-1.jpg' %}" class="card-img-top" style="height: 300px; z-index: 2; border-radius: 0;" alt="...">
+            <div class="card-body">
+              <h6><a href="#">Special Offers </a></h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+              <div class="d-grid gap-2 mt-3">
+                <button class="btn  btn-outline-primary" type="button" style="border-radius: 0;">Block Button</button>
+              </div>
+
+              <div class="d-grid gap-2 mt-3">
+                <button class="btn  btn-outline-primary" type="button" style="border-radius: 0;">Block Button</button>
+              </div>
+
+              <div class="d-grid gap-2 mt-3">
+                <button class="btn  btn-outline-primary" type="button" style="border-radius: 0;">Block Button</button>
+              </div>
+
+            </div>
+          </div><!-- End Card with an image on top -->
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body pb-0">
+              <h5 class="card-title">New Deals <span>| Today</span></h5>
+
+              <div class="news">
+
+                {% for product in all_products %}
+                {% if product.thumbnail %}
+
+                <div class="post-item clearfix">
+                  <img src="{{ product.thumbnail.url }}" alt="" style="height:60px; width:75px;">
+                  <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                  <p class="card-text text text-success"><strong>Ksh.{{ product.price }}</strong></p>
+                </div>
+
+                <hr>
+
+                {% endif %}
+                {% endfor %}
+
+              </div><!-- End sidebar recent posts-->
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+	</main>
+</body>
+</html>
+{% endblock %}

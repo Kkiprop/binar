@@ -1,0 +1,118 @@
+<section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Basic Modal</h5>
+              <p>Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page</p>
+
+              <!-- Basic Modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                Basic Modal
+              </button>
+              <div class="modal fade" id="basicModal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Basic Modal</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End Basic Modal-->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+</section>
+
+
+
+
+
+
+
+{% extends 'mkt/base.html' %}
+{% block start %}
+{% load static %}
+
+            <div class="pagination">
+                <span class="step-links">
+                  {% if page_obj.has_previous %}
+                      <a href="?page=1">&laquo; first</a>
+                      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% endif %}
+
+                  <span class="current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  </span>
+
+                  {% if page_obj.has_next %}
+                      <a href="?page={{ page_obj.next_page_number }}">next</a>
+                      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+                </span>
+            </div>
+            <div class="col-12 d-flex justify-content-center mt-5"> <a class="btn btn-lg btn-primary" href="#!">View All <i class="fas fa-chevron-right ms-2"> </i></a></div>
+          </div>
+        </div>
+
+
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  {% if page_obj.has_previous %}
+                      <li class="page-item"><a href="?page=1">&laquo; first</a></li>
+                      <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                  {% endif %}
+
+                  <span class="current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  </span>
+
+                  {% if page_obj.has_next %}
+                      <li class="page-item"><a href="?page={{ page_obj.next_page_number }}">next</a></li>
+                      <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+
+
+
+              def product_list(request, category_slug=None, subcategory_slug=None):
+    category = None
+    categories = Category.objects.all()
+    subcategory = None
+    subcategories = SubCategory.objects.all()
+    products = Product.objects.filter(instock=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        subcategory = get_object_or_404(SubCategory, slug=subcategory_slug)
+        products = products.filter(category=category)
+    return render(request,
+                  'mkt/products.html',
+                  {'category': category,
+                   'categories': categories,
+                   'subcategory': subcategory,
+                   'subcategories': subcategories,
+                   'products': products})
+
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product, id = id, slug = slug, available = True)
+    return render(request,'mkt/product_details.html', {'product': product})
+
+
+
+    <h3>Categories</h3>
+    {% for i in category %}
+    <h6><a href="{% url 'mkt:products' %}?category={{ i.name }}">{{ i.name }}</a></h6>
+    {% endfor %}

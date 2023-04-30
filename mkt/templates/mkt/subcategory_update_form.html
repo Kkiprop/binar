@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Profile</title>
+</head>
+<body>
+  <form action="/profile_edit/" method="post">
+	{% csrf_token %}
+	{{ profile_form }}
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
